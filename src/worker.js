@@ -1,7 +1,8 @@
 // src/worker.js
 import { connect } from "cloudflare:sockets";
 
-let sha224Password = '08f32643dbdacf81d0d511f1ee24b06de759e90f8edf742bbdc57d99';
+// https://www.atatus.com/tools/sha224-to-hash
+let sha224Password = 'd16afac2b11847ac77a70ab81491c96efdb720f6ce03e14a07d36edb';
 let proxyIP = "";
 
 function isValidSHA224(hash) {
@@ -122,7 +123,7 @@ async function parseTrojanHeader(buffer) {
   if (password !== sha224Password) {
     return {
       hasError: true,
-      message: "invalid password"
+      message: `invalid password: ${password} <--> ${sha224Password}`
     };
   }
 
